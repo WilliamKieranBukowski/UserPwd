@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class Driver {
     public static void main(String[] args) {
 
+        //Scanner and data structs
         Scanner scanner = new Scanner(System.in);
         List<User> users = new ArrayList<>();
         String currentUser = "";
@@ -16,22 +17,22 @@ public class Driver {
 
         System.out.println("Welcome to Flash Pass!");
 
-
-        while(true){
+        while(true){  //While loop to repeat menu process
             System.out.println("What would you like to do?");
             System.out.println("1) Register");
             System.out.println("2) Login");
-            System.out.println("3) Print who is logged in");
+            System.out.println("3) Login status");
             System.out.println("0) Exit");
+            System.out.println("Please make a selection > ");
 
-            String userInput = scanner.nextLine();
-            int x = 5;
+            String userInput = scanner.nextLine(); // Get menu selection
 
             switch(userInput){
                 case "1":
-                    System.out.println("Enter your username.");
+                    //New User Registration
+                    System.out.println("Enter your username");
                     String username = scanner.nextLine();
-                    System.out.println("Enter your password.");
+                    System.out.println("Enter your password");
                     String password = scanner.nextLine();
 
                     User user = new User();
@@ -40,14 +41,13 @@ public class Driver {
                     users.add(user);
                     break;
                 case "2":
+                    //Login a user
                     System.out.println("Enter your username.");
                     String loginInput = scanner.nextLine(); //get user login input w/ scanner (1)
                     System.out.println("Enter your password.");
                     String passInput = scanner.nextLine();
 
-                    //System.out.println(passInput);
-
-                    for (User value : users) {
+                    for (User value : users) { //for loop through List users
                         if (value.username.equals(loginInput) && value.password.equals(passInput)) // if (elementUser == loginInput )
                         {
                             currentUser = loginInput;
@@ -56,22 +56,21 @@ public class Driver {
                             break;
                         }
                     }
-
-                    //TODO: Implement User Log In (1)
-                    // receiving a user's input (2)
-                    // checking them against the existing user list
-                    // log them in -> come up with a way to track WHO is currently logged in
                     break;
-                case "3":
-                    // TODO: print who is currently logged in
-                    System.out.println("Current user is: " + currentUser);
+                case "3": //Multiple users?
+                    //Print current user
+                    if(currentUser == "") {
+                        System.out.println("No Users are logged in");
+                    } else{
+                        System.out.println("Current user is: " + currentUser);
+                    }
                     break;
                 case "0":
-                    System.out.println("Exiting the app");
+                    System.out.println("Exiting the application");
                     System.exit(1);
                     break;
                 default:
-                    System.out.println("Please only choose from the available menu options.");
+                    System.out.println("Choose only from the available menu options...");
                     break;
             }
         }
